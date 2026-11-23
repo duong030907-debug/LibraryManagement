@@ -21,5 +21,6 @@ public class AccountService {
  public synchronized void promote(Long id){Account a=require(id);if(a.isAdmin())throw new IllegalArgumentException("Không thể thay đổi quyền ADMIN");a.setRole("LIBRARIAN");}
  public synchronized void demote(Long id){Account a=require(id);if(a.isAdmin())throw new IllegalArgumentException("Không thể hạ cấp ADMIN");a.setRole("STUDENT");}
  public synchronized void delete(Long id){Account a=require(id);if(a.isAdmin())throw new IllegalArgumentException("Không thể vô hiệu hóa ADMIN");a.setActive(false);}
+ public synchronized void activate(Long id){Account a=require(id);a.setActive(true);}
  private Account require(Long id){Account a=findById(id);if(a==null)throw new IllegalArgumentException("Không tìm thấy tài khoản");return a;}
 }
