@@ -155,6 +155,7 @@
       <c:if test="${account.admin and u.role eq 'STUDENT'}"><form method="post" action="${pageContext.request.contextPath}/admin/users/${u.id}/promote"><button class="icon-button" title="Thăng cấp thủ thư"><i class="bi bi-arrow-up-circle"></i></button></form></c:if>
       <c:if test="${account.admin and u.role eq 'LIBRARIAN'}"><form method="post" action="${pageContext.request.contextPath}/admin/users/${u.id}/demote"><button class="icon-button" title="Hạ cấp thành viên"><i class="bi bi-arrow-down-circle"></i></button></form></c:if>
       <c:if test="${account.admin and u.role ne 'ADMIN' and u.active}"><form method="post" action="${pageContext.request.contextPath}/admin/users/${u.id}/delete" onsubmit="return confirm('Vô hiệu hóa tài khoản này?')"><button class="icon-button danger" title="Khóa tài khoản"><i class="bi bi-person-x"></i></button></form></c:if>
+      <c:if test="${account.admin and u.role ne 'ADMIN' and not u.active}"><form method="post" action="${pageContext.request.contextPath}/admin/users/${u.id}/activate"><button class="icon-button" title="Kích hoạt lại"><i class="bi bi-person-check"></i></button></form></c:if>
      </div></td></tr>
    </c:forEach>
   </tbody></table></div>
