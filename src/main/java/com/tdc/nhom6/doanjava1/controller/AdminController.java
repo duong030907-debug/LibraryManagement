@@ -28,8 +28,8 @@ public class AdminController {
         Account a=current(s);
         if(a==null || !a.canManage()) return "redirect:/login";
         List<Book> allBooks=books.findAll();
-        int total=allBooks.stream().mapToInt(Book::getTotalCopies).mapToInt(Integer::intValue).sum();
-        int available=allBooks.stream().mapToInt(Book::getAvailableCopies).mapToInt(Integer::intValue).sum();
+        int total=allBooks.stream().mapToInt(b -> b.getTotalCopies()==null?0:b.getTotalCopies()).sum();
+        int available=allBooks.stream().mapToInt(b -> b.getAvailableCopies()==null?0:b.getAvailableCopies()).sum();
         Map<String,Object> inventory=new HashMap<>();
         inventory.put("totalTitles",allBooks.size()); inventory.put("totalCopies",total);
         inventory.put("availableCopies",available); inventory.put("borrowedCopies",total-available);
