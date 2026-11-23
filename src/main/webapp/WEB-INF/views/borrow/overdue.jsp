@@ -63,7 +63,7 @@
               <td>${r.borrowDate}</td>
               <td style="color:#dc7777;font-weight:600;">${r.dueDate}</td>
               <td><span class="pill red">Quá hạn</span></td>
-              <td class="muted">5.000 ₫ / ngày trễ</td>
+              <td class="muted">2.000 ₫ / ngày trễ</td>
               <td class="align-right">
                 <div style="display:inline-flex;gap:8px;align-items:center;">
                   <a href="${pageContext.request.contextPath}/borrow/detail/${r.id}" class="text-button">
