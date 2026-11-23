@@ -1,13 +1,32 @@
 package com.tdc.nhom6.doanjava1.model;
-import java.time.LocalDateTime;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 public class BorrowRecord {
- private Long id; private Long accountId; private Long bookId; private String accountName; private String bookTitle; private LocalDateTime borrowedAt; private LocalDateTime returnedAt;
- public Long getId(){return id;} public void setId(Long id){this.id=id;}
- public Long getAccountId(){return accountId;} public void setAccountId(Long accountId){this.accountId=accountId;}
- public Long getBookId(){return bookId;} public void setBookId(Long bookId){this.bookId=bookId;}
- public String getAccountName(){return accountName;} public void setAccountName(String accountName){this.accountName=accountName;}
- public String getBookTitle(){return bookTitle;} public void setBookTitle(String bookTitle){this.bookTitle=bookTitle;}
- public LocalDateTime getBorrowedAt(){return borrowedAt;} public void setBorrowedAt(LocalDateTime borrowedAt){this.borrowedAt=borrowedAt;}
- public LocalDateTime getReturnedAt(){return returnedAt;} public void setReturnedAt(LocalDateTime returnedAt){this.returnedAt=returnedAt;}
- public boolean isReturned(){return returnedAt!=null;}
+    private Long id;
+    private Account account;
+    private Book book;
+    private LocalDate borrowDate, dueDate, returnDate;
+    private String status="ACTIVE", notes;
+    private BigDecimal fineAmount=BigDecimal.ZERO;
+    private boolean finePaid;
+    public Long getId(){return id;} public void setId(Long v){id=v;}
+    public Account getAccount(){return account;} public void setAccount(Account v){account=v;}
+    public Book getBook(){return book;} public void setBook(Book v){book=v;}
+    public Long getAccountId(){return account==null?null:account.getId();}
+    public Long getBookId(){return book==null?null:book.getId();}
+    public String getAccountName(){return account==null?"":account.getFullName();}
+    public String getBookTitle(){return book==null?"":book.getTitle();}
+    public LocalDate getBorrowDate(){return borrowDate;} public void setBorrowDate(LocalDate v){borrowDate=v;}
+    public LocalDate getDueDate(){return dueDate;} public void setDueDate(LocalDate v){dueDate=v;}
+    public LocalDate getReturnDate(){return returnDate;} public void setReturnDate(LocalDate v){returnDate=v;}
+    public String getStatus(){return status;} public void setStatus(String v){status=v;}
+    public String getNotes(){return notes;} public void setNotes(String v){notes=v;}
+    public BigDecimal getFineAmount(){return fineAmount;} public void setFineAmount(BigDecimal v){fineAmount=v==null?BigDecimal.ZERO:v;}
+    public boolean isFinePaid(){return finePaid;} public void setFinePaid(boolean v){finePaid=v;}
+    public boolean isReturned(){return returnDate!=null;}
+    public boolean isOverdue(){return "ACTIVE".equals(status)&&dueDate!=null&&LocalDate.now().isAfter(dueDate);}
+    public long getOverdueDays(){return isOverdue()?ChronoUnit.DAYS.between(dueDate,LocalDate.now()):0;}
 }
