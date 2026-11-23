@@ -14,35 +14,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/app.css">
 </head><body><div class="app">
 <header class="header"><div class="nav-container"><a class="brand" href="${pageContext.request.contextPath}/books"><span class="brand-icon"><i class="bi bi-book-half"></i></span><span>Thư Viện<span class="brand-light"> Sách</span></span></a><button class="mobile-toggle" type="button" aria-label="Mở điều hướng" onclick="toggleMobileNav()"><i class="bi bi-list"></i></button><nav class="main-nav" id="mainNav"><a href="${pageContext.request.contextPath}/books" class="nav-link"><i class="bi bi-journals"></i>Sách</a><a href="${pageContext.request.contextPath}/documents" class="nav-link"><i class="bi bi-file-earmark-text"></i>Tài liệu số</a><c:if test="${sessionScope.currentUser != null}"><a href="${pageContext.request.contextPath}/borrow/active" class="nav-link"><i class="bi bi-bookmark-check"></i>Đang mượn</a><a href="${pageContext.request.contextPath}/borrow/history" class="nav-link"><i class="bi bi-clock-history"></i>Lịch sử</a><c:if test="${sessionScope.currentUser.canManage()}"><a href="${pageContext.request.contextPath}/admin" class="nav-link"><i class="bi bi-grid"></i>Trung tâm quản trị</a></c:if></c:if></nav><div class="account dropdown"><c:choose><c:when test="${sessionScope.currentUser != null}"><button type="button" class="account-button" onclick="toggleDropdown('accountDropdown', event)"><span class="avatar">${fn:substring(sessionScope.currentUser.fullName,0,2)}</span><span class="account-info"><strong>${sessionScope.currentUser.fullName}</strong><small>${sessionScope.currentUser.role}</small></span><i class="bi bi-chevron-down"></i></button><div class="dropdown-menu right" id="accountDropdown"><a href="${pageContext.request.contextPath}/profile"><i class="bi bi-person"></i>Tài khoản</a><a href="${pageContext.request.contextPath}/logout"><i class="bi bi-box-arrow-right"></i>Đăng xuất</a></div></c:when><c:otherwise><a href="${pageContext.request.contextPath}/login" class="button light">Đăng nhập</a><a href="${pageContext.request.contextPath}/register" class="button primary">Đăng ký</a></c:otherwise></c:choose></div></div></header>
-<style>
-.admin-nav{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 28px;padding:12px;background:#fff;border:1px solid var(--border);border-radius:14px;position:sticky;top:8px;z-index:5;box-shadow:0 5px 18px #172b4d0a}
-.admin-nav a{padding:9px 13px;border-radius:8px;text-decoration:none;color:var(--text);font-size:13px;font-weight:600}
-.admin-nav a:hover{background:#eef4ff;color:var(--primary)}
-.admin-section{scroll-margin-top:90px;margin:28px 0 38px}
-.admin-section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:16px}
-.admin-section-head h2{margin:4px 0;font-size:23px}
-.admin-section-head p{margin:0;color:var(--muted);font-size:13px}
-.admin-two-col{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:18px;align-items:start}
-.admin-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.admin-form-grid .wide{grid-column:1/-1}
-.admin-table-wrap{overflow-x:auto}
-.admin-table-wrap table{min-width:760px;width:100%}
-.admin-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
-.admin-actions form{margin:0}
-.admin-actions button{cursor:pointer}
-.admin-mini{font-size:12px;color:var(--muted)}
-.admin-book-title{font-weight:700}
-.admin-inline-cover{width:42px;height:54px;object-fit:cover;border-radius:5px}
-.admin-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-.admin-kpi{background:#fff;border:1px solid var(--border);border-radius:13px;padding:18px}
-.admin-kpi small{display:block;color:var(--muted);font-size:12px}
-.admin-kpi strong{display:block;font-size:27px;margin:5px 0}
-.admin-panel{background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px}
-.admin-panel h3{margin:0 0 16px}
-.admin-empty{padding:25px;text-align:center;color:var(--muted)}
-@media(max-width:850px){.admin-two-col{grid-template-columns:1fr}.admin-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.admin-nav{position:static}}
-@media(max-width:520px){.admin-kpis{grid-template-columns:1fr 1fr}.admin-form-grid{grid-template-columns:1fr}.admin-form-grid .wide{grid-column:auto}.admin-section-head{align-items:flex-start;flex-direction:column}}
-</style>
+
 <main class="main-container">
  <div class="breadcrumb"><i class="bi bi-house-door"></i><span>/</span><span>Trung tâm quản trị</span></div>
  <div class="page-heading">
