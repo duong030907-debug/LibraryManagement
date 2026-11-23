@@ -1,11 +1,11 @@
 # Library Management System
 
-A remake of the original DoAnJava1 library-management project. The original Vietnamese UI and CSS are retained, while reusable page elements use JSP/JSTL tag files.
+A remake of the original DoAnJava1 library-management project. The original Vietnamese UI and CSS are retained, with plain HTML in JSP views and a shared stylesheet.
 
 ## Stack
 - Java 17
 - Spring MVC 5
-- JSP + JSTL tag files
+- JSP (plain HTML markup) + JSTL/EL
 - Maven WAR
 - Tomcat 9
 - In-memory services; no MySQL, WampServer, Hibernate, JPA, or database setup
@@ -19,7 +19,7 @@ A remake of the original DoAnJava1 library-management project. The original Viet
 - Return processing, late-return status, 2,000 VND/day fine calculation, fine payment
 - Digital document upload (PDF/DOC/DOCX, max 50 MB), download/PDF preview, download counts, deletion by staff
 - Staff dashboard with inventory, monthly borrowing/return totals, overdue count, collected fines, and most-borrowed ranking
-- Reusable JSTL tag files for header, navigation, footer, alerts, and book cards
+- All JSP views use regular HTML markup; shared styling is loaded from `static/app.css` and shared interactions from `static/app.js`
 
 ## Run
 1. Install JDK 17, Maven, and Tomcat 9.
