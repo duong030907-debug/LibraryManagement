@@ -1,4 +1,4 @@
-<%@ tag description="Shared page head and application shell" %>
+<%@ tag pageEncoding="UTF-8" description="Shared page head and application shell" %>
 <%@ attribute name="title" required="false" type="java.lang.String" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
