@@ -55,6 +55,15 @@ public class AdminController {
     }
 
     // Backward-compatible routes now land on the unified administration page.
+
+    @PostMapping("/users/{id}/activate")
+    public String activate(@PathVariable Long id,HttpSession s,RedirectAttributes ra) {
+        if(current(s)==null||!current(s).isAdmin()) return "redirect:/admin";
+        try { accounts.activate(id); ra.addFlashAttribute("success","Đã kích hoạt lại tài khoản."); }
+        catch(RuntimeException e) { ra.addFlashAttribute("error",e.getMessage()); }
+        return "redirect:/admin#users";
+    }
+
     @GetMapping("/stats") public String stats() { return "redirect:/admin#overview"; }
     @GetMapping("/users") public String users() { return "redirect:/admin#users"; }
 
