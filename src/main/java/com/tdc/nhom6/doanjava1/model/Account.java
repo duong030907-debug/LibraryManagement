@@ -1,12 +1,21 @@
 package com.tdc.nhom6.doanjava1.model;
+
 public class Account {
- private Long id; private String username; private String passwordHash; private String fullName; private String role;
- public Account(){}
- public Account(Long id,String username,String passwordHash,String fullName,String role){this.id=id;this.username=username;this.passwordHash=passwordHash;this.fullName=fullName;this.role=role;}
- public boolean isAdmin(){return "ADMIN".equals(role);} public boolean canManage(){return isAdmin()||"LIBRARIAN".equals(role);}
- public Long getId(){return id;} public void setId(Long id){this.id=id;}
- public String getUsername(){return username;} public void setUsername(String username){this.username=username;}
- public String getPasswordHash(){return passwordHash;} public void setPasswordHash(String passwordHash){this.passwordHash=passwordHash;}
- public String getFullName(){return fullName;} public void setFullName(String fullName){this.fullName=fullName;}
- public String getRole(){return role;} public void setRole(String role){this.role=role;}
+    private Long id;
+    private String username, passwordHash, fullName, email, role = "STUDENT";
+    private boolean active = true;
+    public Account() {}
+    public Account(Long id,String username,String passwordHash,String fullName,String role) {
+        this.id=id; this.username=username; this.passwordHash=passwordHash; this.fullName=fullName; this.role=role;
+    }
+    public boolean isAdmin(){return "ADMIN".equals(role);}
+    public boolean isLibrarian(){return "LIBRARIAN".equals(role);}
+    public boolean canManage(){return isAdmin()||isLibrarian();}
+    public Long getId(){return id;} public void setId(Long v){id=v;}
+    public String getUsername(){return username;} public void setUsername(String v){username=v;}
+    public String getPasswordHash(){return passwordHash;} public void setPasswordHash(String v){passwordHash=v;}
+    public String getFullName(){return fullName;} public void setFullName(String v){fullName=v;}
+    public String getEmail(){return email;} public void setEmail(String v){email=v;}
+    public String getRole(){return role;} public void setRole(String v){role=v;}
+    public boolean isActive(){return active;} public void setActive(boolean v){active=v;}
 }
