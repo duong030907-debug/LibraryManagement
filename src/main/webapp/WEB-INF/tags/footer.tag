@@ -1,4 +1,4 @@
-<%@ tag description="Shared page footer" %>
+<%@ tag pageEncoding="UTF-8" description="Shared page footer" %>
 <footer class="footer">
   <div>
     <span>
