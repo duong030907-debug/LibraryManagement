@@ -42,29 +42,10 @@
         </a>
 
         <c:if test="${sessionScope.currentUser.canManage()}">
-          <div class="dropdown">
-            <button type="button"
-                    class="nav-link ${fn:contains(currentPath, '/admin') or fn:contains(currentPath, '/borrow/overdue') ? 'active' : ''}"
-                    onclick="toggleDropdown('adminDropdown', event)">
-              <i class="bi bi-grid"></i>
-              Quản lý
-              <i class="bi bi-chevron-down chevron"></i>
-            </button>
-            <div class="dropdown-menu" id="adminDropdown">
-              <a href="${pageContext.request.contextPath}/admin/stats">
-                <i class="bi bi-bar-chart"></i>
-                Thống kê &amp; Báo cáo
-              </a>
-              <a href="${pageContext.request.contextPath}/borrow/overdue">
-                <i class="bi bi-exclamation-triangle"></i>
-                Mượn quá hạn
-              </a>
-              <a href="${pageContext.request.contextPath}/admin/users">
-                <i class="bi bi-people"></i>
-                Người dùng
-              </a>
-            </div>
-          </div>
+          <a href="${pageContext.request.contextPath}/admin"
+             class="nav-link ${fn:contains(currentPath, '/admin') or fn:contains(currentPath, '/borrow/overdue') ? 'active' : ''}">
+            <i class="bi bi-grid"></i> Trung tâm quản trị
+          </a>
         </c:if>
       </c:if>
     </nav>
